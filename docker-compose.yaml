@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:80
+    # depends_on:
+      # - postgres
+      # - vault
+
+  # postgres:
+  #   image: postgres
+  #   container_name: postgres_dev
+  #   environment:
+  #     POSTGRES_DB: ${POSTGRES_DB:-postgres}
+  #     POSTGRES_USER: ${POSTGRES_USER:-postgres}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+  #   volumes:
+  #     - ~/db_volumes/postgres:/var/lib/postgresql/data
+  #   ports:
+  #     - 5432:5432
+  #   restart: unless-stopped
+
+  # vault:
+  #   image: vault
+  #   container_name: vault_dev
+  #   environment:
+  #     VAULT_ADDR: http://127.0.0.1:8200
+  #     VAULT_DEV_ROOT_TOKEN_ID: your_root_token
+  #   ports:
+  #     - 8200:8200
+  #   volumes:
+  #     - private-volume:/vault/file:rw
+  #     - ./vault:/vault/config:rw
+  #   cap_add:
+  #       - IPC_LOCK
+  #   entrypoint: vault server -config=/vault/config/vault.json
